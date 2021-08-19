@@ -4,19 +4,15 @@ import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
 
-const emailReducer = (state, action) => {
+const loginFormReducer = (state, action) => {
     if (action.type === "USER_EMAIL_INPUT") {
-        return { value: action.val, isValid: action.val.includes("@") };
+        return {value: action.val, isValid: action.val.includes("@")};
     }
 
     if (action.type === "EMAIL_UNFOCUSED") {
-        return { value: state.value, isValid: state.value.includes("@") };
+        return {value: state.value, isValid: state.value.includes("@")};
     }
-
-    return { value: "", isValid: false };
-};
-
-const passwordReducer = (state, action) => {
+    
     if (action.type === "USER_PASSWORD_INPUT") {
         return { value: action.val, isValid: action.val.trim().length > 6 };
     }
@@ -26,7 +22,7 @@ const passwordReducer = (state, action) => {
     }
 
     return { value: "", isValid: false };
-};
+}
 
 const Login = (props) => {
     // const [enteredEmail, setEnteredEmail] = useState("");
@@ -35,12 +31,12 @@ const Login = (props) => {
     // const [passwordIsValid, setPasswordIsValid] = useState();
     const [formIsValid, setFormIsValid] = useState(false);
 
-    const [emailState, emailDispatcher] = useReducer(emailReducer, {
+    const [emailState, emailDispatcher] = useReducer(loginFormReducer, {
         value: "",
         isValid: null,
     });
 
-    const [passwordState, passwordDispatcher] = useReducer(passwordReducer, {
+    const [passwordState, passwordDispatcher] = useReducer(loginFormReducer, {
         value: "",
         isValid: null,
     });
